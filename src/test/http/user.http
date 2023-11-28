@@ -1,0 +1,38 @@
+### List users
+# @no-cookie-jar
+# @no-log
+GET http://localhost:8080/api/v1/users
+
+> {%
+    //client.log(response.body[0].uuid);
+    client.global.set("uuid", response.body[0].uuid);
+    client.log("uuid: " + client.global.get("uuid"));
+%}
+
+### Get user by uuid
+GET http://localhost:8080/api/v1/users/{{uuid}}
+
+
+### Create user
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+  "uuid": "{{$random.uuid}}",
+  "name": "{{$random.alphabetic(6)}}",
+  "email": "{{$random.email}}"
+}
+
+### Edit user
+PUT http://localhost:8080/api/v1/users/{{uuid}}
+Content-Type: application/json
+
+{
+  "uuid": "{{uuid}}",
+  "name": "modified-{{$random.alphabetic(6)}}",
+  "email": "{{$random.email}}"
+}
+
+### Delete user
+DELETE http://localhost:8080/api/v1/users/{{uuid}}
+Content-Type: application/json
