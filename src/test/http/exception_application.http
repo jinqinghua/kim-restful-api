@@ -1,0 +1,11 @@
+### GET 401
+GET http://localhost:8080/api/v1/app-exceptions/401
+Accept: application/json
+
+### GET 403
+GET http://localhost:8080/api/v1/app-exceptions/403
+Accept: application/json
+
+### GET 404
+GET http://localhost:8080/api/v1/app-exceptions/404
+Accept: application/json
